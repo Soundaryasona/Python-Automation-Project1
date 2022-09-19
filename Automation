@@ -1,0 +1,104 @@
+import time
+
+from selenium import webdriver
+import selenium.webdriver.support.select
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.support import select
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+
+
+def test_code(browsertype):
+    if browsertype == "Chrome":
+        service = ChromeService(executable_path=ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service)
+
+    elif browsertype == "Firefox":
+        service = FirefoxService(executable_path=GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=service)
+        ##Login with Url
+        driver.get("https://opensource-demo.orangehrmlive.com/")
+        time.sleep(5)
+        driver.find_element(by=By.CSS_SELECTOR, value="input[placeholder^='User']").send_keys("Admin")
+        driver.find_element(by=By.CSS_SELECTOR, value="input[placeholder^='Pass']").send_keys("admin123")
+        driver.find_element(by=By.CSS_SELECTOR, value="button[class^='oxd']").click()
+        time.sleep(3)
+        ##Navigate and create New Employee
+        driver.find_element(by=By.XPATH,value="//a[@href='/web/index.php/pim/viewPimModule']").click()
+        time.sleep(3)
+        driver.find_element(by=By.XPATH,value="//a[contains(text(),'Add Employee')]").click()
+        time.sleep(2)
+        ##Adding Employee Details
+        driver.find_element(by=By.CSS_SELECTOR,value="input[placeholder^='First']").send_keys("Soundarya")
+        time.sleep(2)
+        driver.find_element(by=By.CSS_SELECTOR,value="input[placeholder='Last Name']").send_keys("77")
+        time.sleep(2)
+        driver.find_element(By.CSS_SELECTOR,value="span[class='oxd-switch-input oxd-switch-input--active --label-right']").click()
+     ##Adding Login details for Admin
+        driver.find_element(by=By.XPATH,value="//input[@autocomplete='off']").send_keys("Soundarya77")
+        driver.find_element(by=By.CSS_SELECTOR,value="input[type='password']").send_keys("Jesus@143")
+        driver.find_element(by=By.XPATH,value="/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[4]/div/div[2]/div/div[2]/input").send_keys("Jesus@143")
+        driver.find_element(by=By.CSS_SELECTOR,value="button[type='submit']").click()
+        time.sleep(7)
+        driver.find_element(by=By.XPATH,value="//a[@href='/web/index.php/admin/viewAdminModule']").click()
+        time.sleep(2)
+        driver.find_element(by=By.CSS_SELECTOR,value="[class='oxd-button oxd-button--medium oxd-button--secondary']").click()
+        time.sleep(2)
+        driver.find_element(by=By.XPATH,value="//div[@class='oxd-select-text oxd-select-text--active']").click()
+        time.sleep(2)
+        driver.find_element(by=By.XPATH,value="//div[@class='oxd-select-text--after']").click()
+        time.sleep(2)
+        driver.find_element(by=By.XPATH,value="//span[contains(text(),'Admin')]").click()
+        time.sleep(2)
+        driver.find_element(by=By.CSS_SELECTOR,value="input[placeholder='Type for hints...']").send_keys("Soundarya")
+        time.sleep(5)
+        driver.find_element(by=By.XPATH,value="//div[@role='listbox']").click()
+        time.sleep(5)
+        driver.find_element(by=By.XPATH,value="/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div").click()
+        time.sleep(3)
+        driver.find_element(by=By.XPATH,value="/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div/div[2]/i").click()
+        time.sleep(2)
+        driver.find_element(by=By.XPATH,value="//span[contains(text(),'Enabled')]").click()
+        time.sleep(2)
+        driver.find_element(by=By.XPATH,value="//input[@autocomplete='off']").send_keys("Soundarya 77")
+        time.sleep(4)
+        driver.find_element(by=By.XPATH,value="//input[@type='password']").send_keys("Jesus@143")
+        time.sleep(2)
+        driver.find_element(by=By.XPATH,value="/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/div/div[2]/input").send_keys("Jesus@143")
+        time.sleep(3)
+        driver.find_element(by=By.XPATH,value="//button[@class='oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']").click()
+        time.sleep(11)
+        driver.find_element(by=By.XPATH,value="/html/body/div/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/input").send_keys("Soundarya 77")
+        time.sleep(4)
+        driver.find_element(by=By.XPATH,value="//div[@class='oxd-select-text oxd-select-text--active']").click()
+        time.sleep(4)
+        driver.find_element(by=By.XPATH,value="//div[@class='oxd-select-text--after']").click()
+        time.sleep(4)
+        driver.find_element(by=By.XPATH,value="//span[contains(text(),'Admin')]").click()
+        time.sleep(4)
+        driver.find_element(by=By.CSS_SELECTOR,value="input[placeholder='Type for hints...']").send_keys("Soundarya")
+        time.sleep(4)
+        driver.find_element(by=By.XPATH,value="//div[@role='listbox']").click()
+        time.sleep(4)
+        driver.find_element(by=By.XPATH,value="/html/body/div/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[4]/div/div[2]/div/div/div[2]/i").click()
+        time.sleep(2)
+        driver.find_element(by=By.XPATH, value="//span[contains(text(),'Enabled')]").click()
+        time.sleep(3)
+        driver.find_element(by=By.XPATH,value="//button[@type='submit']").click()
+        time.sleep(3)
+        driver.find_element(by=By.XPATH,value="//p[@class='oxd-userdropdown-name']").click()
+        time.sleep(3)
+        driver.find_element(by=By.XPATH,value="//a[contains(text(),'Logout')]").click()
+        time.sleep(3)
+        driver.find_element(by=By.CSS_SELECTOR, value="input[placeholder^='User']").send_keys("Soundarya 77")
+        driver.find_element(by=By.CSS_SELECTOR, value="input[placeholder^='Pass']").send_keys("Jesus@143")
+        driver.find_element(by=By.CSS_SELECTOR, value="button[class^='oxd']").click()
+        time.sleep(2)
+
+
+
+
+test_code("Firefox")
+
